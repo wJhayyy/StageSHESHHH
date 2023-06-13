@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url("bgpdf1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.header-bg{
+    background-color: #009bcb;
+}
+
+.img-entete{
+    position:absolute;
+    border: 16px solid #009bcb;
+    background-color: #009bcb;
+    padding-left: 75px;
+    width: 26rem;
+}
+
+fieldset {
+    border: .2em solid #009bcb;
+    border-radius: inherit;
+  }
+  
+  legend {
+    padding: 0 1em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1.4em;
+    color: #009bcb;
+  }
+  
+  p {
+    color: #009bcb;
+  }
+
+  .liste-bleue {
+    list-style-type: disc;
+    color: #009bcb;
+    line-height: 32px;
+  }
+
+  .espace-pedago{
+    line-height: 42px;
+  }
