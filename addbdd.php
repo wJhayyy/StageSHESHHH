@@ -180,7 +180,7 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
          </p>
        </div>
      </div>
-     <!-- accordion-tab -->
+     <!-- accordion-taffb -->
    </div>
  </div>
 
