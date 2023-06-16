@@ -5,9 +5,7 @@ include_once('connectbdd.php');
 
 // $connect = new Connect();
 
-$stmt_competence = $connexion->prepare("SELECT id_competences, intitule_competences
-                                      FROM competences
-                                      ");
+$stmt_competence = $connexion->prepare("SELECT id_competences, intitule_competences FROM competences");
 $stmt_competence->execute();
 $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,29 +62,41 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
   <div class="w-5/6">
       <?php 
       foreach ($all_competences as $rowcompetences) { 
+
+        // var_dump($rowcompetences);
         $id_comp = $rowcompetences['id_competences'];
 
         $stmt_objop = $connexion->prepare("SELECT oo.intitule_objectifs_operationnels, oo.id_objectifs_operationnels FROM objectifs_operationnels oo INNER JOIN classer cl ON cl.id_objectifs_operationnels = oo.id_objectifs_operationnels WHERE cl.id_competences = ?");
         $stmt_objop->execute([$id_comp]);
-        $all_objop = $stmt_objop->fetchAll(PDO::FETCH_ASSOC);?>
+        $all_objop = $stmt_objop->fetchAll(PDO::FETCH_ASSOC);
+        
+        // var_dump($all_objop);
+        ?>
 
-      <h2 class="uppercase font-bold mb-4 flex justify-between"><?php echo $rowcompetences['intitule_competences'] . ' :';?> <button class="text-rougelogo border-2 border-rougelogo w-7 rounded-lg hover:text-white hover:bg-rougelogo">X</button></h2>
+
+        <h2 class="uppercase font-bold mb-4 flex justify-between"><?php echo $rowcompetences['intitule_competences'] . ' :';?> <button class="text-rougelogo border-2 border-rougelogo w-7 rounded-lg hover:text-white hover:bg-rougelogo">X</button></h2>
   
-        <?php foreach($all_objop as $rowobjop) {?>
+        <?php foreach($all_objop as $rowobjop) { ?>
 
-          <p class="ml-16 mb-2 flex justify-between"><?php echo '- ' . $rowobjop['intitule_objectifs_operationnels'];?><button data-tooltip-target="tooltip-right" data-tooltip-placement="right" type="button" class="flex justify-end mb-2 md:mb-0 text-bleulogo border-2 border-bleulogo px-2 hover:text-white hover:bg-bleulogo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center">i</button>
-            <div id="tooltip-right" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
+          <p class="ml-16 mb-2 flex justify-between">
+
+              <?php echo '- ' . $rowobjop['intitule_objectifs_operationnels']; ?>
+          
+            <button data-tooltip-target="tooltip-top<?= $rowobjop['id_objectifs_operationnels'] ?>" data-tooltip-placement="top" type="button" class="flex justify-end mb-2 md:mb-0 text-bleulogo border-2 border-bleulogo px-2 hover:text-white hover:bg-bleulogo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center">i</button>
+            <div id="tooltip-top<?= $rowobjop['id_objectifs_operationnels'] ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
             
-            <?php  
+            <?php
+            $id_objop = $rowobjop['id_objectifs_operationnels'];
 
-            $stmt_objpd = $connexion->prepare("SELECT op.intitule_objectifs_pedagogiques FROM objectifs_pedagogiques op INNER JOIN identifier ide ON ide.id_objectifs_pedagogiques = op.id_objectifs_pedagogiques WHERE ide.id_objectifs_operationnels = ?");
-            $stmt_objpd->execute([$rowobjop['id_objectifs_operationnels']]);
+            $stmt_objpd = $connexion->prepare("SELECT op.intitule_objectifs_pedagogiques FROM objectifs_pedagogiques op LEFT JOIN identifier ide ON ide.id_objectifs_pedagogiques = op.id_objectifs_pedagogiques WHERE ide.id_objectifs_operationnels = ?");
+            $stmt_objpd->execute([$id_objop]);
             $all_objpd = $stmt_objpd->fetchAll(PDO::FETCH_ASSOC);
+            
             ?>
+            
+            <?php foreach ($all_objpd as $rowobjpd) {?>
 
-          <?php foreach ($all_objpd as $rowobjpd) {?>
-
-            <?php echo $rowobjpd['intitule_objectifs_pedagogiques']; ?> <br>
+            <?php echo $rowobjpd['intitule_objectifs_pedagogiques'];?> <br>
             <?php } ?>
             <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
