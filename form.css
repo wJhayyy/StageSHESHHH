@@ -1,0 +1,9 @@
+
+  .fa-paperclip {
+    color: #005b7e;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .fa-paperclip:hover {
+    color: #ffffff;
+  }

@@ -24,8 +24,9 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
   <title>Titre de la page</title>
   <link rel="stylesheet" href="form.css">
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
+  <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+	<link rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/></head>
 <script>
     tailwind.config = {
       theme: {
@@ -74,7 +75,7 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
 
-        <h2 class="uppercase font-bold mb-4 flex justify-between"><?php echo $rowcompetences['intitule_competences'] . ' :';?> <button class="text-rougelogo border-2 border-rougelogo w-7 rounded-lg hover:text-white hover:bg-rougelogo">X</button></h2>
+        <h2 class="uppercase font-bold mb-4 flex justify-between"><?php echo $rowcompetences['intitule_competences'] . ' :';?> <button class="text-rougelogo border-2 border-rougelogo w-7 hover:text-white hover:bg-rougelogo">X</button></h2>
   
         <?php foreach($all_objop as $rowobjop) { ?>
 
@@ -82,7 +83,7 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
 
               <?php echo '- ' . $rowobjop['intitule_objectifs_operationnels']; ?>
           
-            <button data-tooltip-target="tooltip-top<?= $rowobjop['id_objectifs_operationnels'] ?>" data-tooltip-placement="top" type="button" class="flex justify-end mb-2 md:mb-0 text-bleulogo border-2 border-bleulogo px-2 hover:text-white hover:bg-bleulogo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center">i</button>
+            <button data-tooltip-target="tooltip-top<?= $rowobjop['id_objectifs_operationnels'] ?>" data-tooltip-placement="top" type="button" class="flex justify-end mb-2 md:mb-0 text-bleulogo border-2 border-bleulogo px-2 hover:text-white hover:bg-bleulogo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm text-center">i</button>
             <div id="tooltip-top<?= $rowobjop['id_objectifs_operationnels'] ?>" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
             
             <?php
@@ -107,6 +108,7 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
     <?php } ?>
   </div>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
