@@ -343,7 +343,7 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
 </main>
 
 <div class="flex justify-end items-center mr-32 mt-8">
-  <button class="inline-block px-4 py-2 text-bleulogo font-semibold border-2 border-bleulogo rounded-md hover:bg-bleulogo hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
+  <button class="inline-block px-4 py-2 text-bleulogo font-semibold border-2 border-bleulogo rounded-md hover:bg-bleulogo hover:text-white">
     Valider le formulaire
   </button>
 </div>
