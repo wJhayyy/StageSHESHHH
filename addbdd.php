@@ -50,7 +50,7 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
 <div>
 
 <!-- You only need to use the section that starts with bg-white to remove the bg and footer -->
-<main class="flex justify-center items-center p-4 h-screen w-full">
+<main class="flex justify-center items-center p-4 w-full">
 
   <div class="bg-white w-full sm:w-1/2 lg:w-9/12 border border-gray-200 divide-y divide-gray-200">
     <details>
@@ -339,7 +339,14 @@ $all_competences = $stmt_competence->fetchAll(PDO::FETCH_ASSOC);
     </details>
 
   </div>
+
 </main>
+
+<div class="flex justify-end items-center mr-32 mt-8">
+  <button class="inline-block px-4 py-2 text-bleulogo font-semibold border-2 border-bleulogo rounded-md hover:bg-bleulogo hover:text-white hover:border-green-700 focus:outline-none focus:ring focus:ring-green-100">
+    Valider le formulaire
+  </button>
+</div>
 
 </div>
 
